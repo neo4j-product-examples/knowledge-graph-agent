@@ -1,4 +1,4 @@
-# Aura Knowledge Graph Agent - Step-by-Step Guide
+# A KYC Agent - Step-by-Step Guide
 
 This guide walks you through creating a KYC (Know Your Customer) analyst agent using Neo4j's Aura GraphRAG Agent functionality.
 
@@ -64,6 +64,7 @@ Click **Add Tools** and choose `Cypher Template` tool
 
 Configure the following tools:
 
+
 ### Tool 1: Get Customer 
 
 **Name**
@@ -91,117 +92,14 @@ RETURN c.id, c.name, c.on_watchlist, c.is_pep, a.name
 
 Repeat the same steps to create the following `Cypher Template` tools
 
-### Tool 2: find_customers_in_rings
+| Tool name | Description | Parameters | Cypher |
+|-----------|-------------|------------|--------|
+| Get Customer | Given a customer_id, return all information in the Customer node and the name of all Accounts owned by this customer. | customer_id (string) - The ID of the customer to look up. | ```cypher MATCH (c:Customer {id: $customer_id})-[:OWNS]->(a:Account) RETURN c.id, c.name, c.on_watchlist, c.is_pep, a.name``` |
+| find_customers_in_rings | Identify high-risk customers involved in circular transaction patterns (up to 6 hops). Detects circular transaction patterns (up to 6 hops) involving high-risk customers. | number_of_customers (int, default: 10) - Maximum number of customers to return | ```cypher MATCH p=(a:Account)-[:FROM\|TO*6]->(a:Account) WITH p, [n IN nodes(p) WHERE n:Account] AS accounts UNWIND accounts AS acct MATCH (cust:Customer)-[r:OWNS]->(acct) WHERE cust.on_watchlist = TRUE OR cust.is_pep = TRUE WITH cust, collect(DISTINCT acct.name) AS accounts_in_ring RETURN cust.name AS customer_name, cust.id AS customer_id, cust.on_watchlist AS customer_on_watchlist, cust.is_pep AS customer_politically_exposed, accounts_in_ring AS customer_accounts_in_ring ORDER BY customer_name ASC LIMIT $number_of_customers``` |
+| is_customer_in_ring | Given a customer id, it determines if it is involved in a suspicious ring. | customer_id (string) - The ID of the customer to check. | ```cypher MATCH (c:Customer {id: $customer_id}) WITH c, EXISTS { MATCH (c)-[:OWNS]->(:Account)-[:FROM\|TO*6]->(:Account) } AS involved RETURN involved``` |
+| is_customer_bridge | Returns customer details if the customer is employed by more than 2 companies, otherwise returns None. | customer_id (string) - The ID of the customer to check. | ```cypher MATCH (c:Customer {id: $customer_id})-[:EMPLOYED_BY]->(co:Company) WITH collect(co.name) AS employer_names, count(*) AS numEmployers, c WHERE numEmployers > 2 RETURN c.id, c.name, c.on_watchlist, c.is_pep, employer_names``` |
+| is_customer_linked_to_hot_property | Check if a customer is linked to a "hot property" (address shared with more than 20 other customers). | customer_id (string) - The ID of the customer to check. | ```cypher MATCH (c:Customer {id: $customer_id})-[:LIVES_AT]->(a:Address) WITH a, c MATCH (a)<-[:LIVES_AT]-(other:Customer) WHERE other <> c WITH a, c, count(other) AS num_other_customers WHERE num_other_customers > 20 RETURN a.name AS address, a.city AS city, num_other_customers, c.name AS customer_name, c.on_watchlist AS customer_on_watchlist, c.is_pep AS customer_is_pep``` |
 
-**Description:**  
-```
-Identify high-risk customers involved in circular transaction patterns (up to 6 hops). Detects circular transaction patterns (up to 6 hops) involving high-risk customers.
-```
-
-**Arguments:**  
-- `number_of_customers`: int (default: 10) — Maximum number of customers to return
-
-**Cypher Query:**
-```cypher
-/* suspicious ring pattern - Money goes from an account through several accounts  transactions and returns to the original account */
-MATCH p=(a:Account)-[:FROM|TO*6]->(a:Account)
-
-/* identify customers involved in the rings who are either on watchlist or politically exposed.  */
-WITH p, [n IN nodes(p) WHERE n:Account] AS accounts
-UNWIND accounts AS acct
-MATCH (cust:Customer)-[r:OWNS]->(acct)
-WHERE cust.on_watchlist = TRUE OR cust.is_pep = TRUE
-
-/* Information to return */
-WITH 
-    cust,
-    collect(DISTINCT acct.name) AS accounts_in_ring
-RETURN 
-    cust.name   AS customer_name,
-    cust.id     AS customer_id,
-    cust.on_watchlist          AS customer_on_watchlist,
-    cust.is_pep                AS customer_politically_exposed,
-    accounts_in_ring           AS customer_accounts_in_ring
-    ORDER BY customer_name ASC
-LIMIT $number_of_customers
-```
-
----
-
-### Tool 3: is_customer_in_ring
-
-**Description:**  
-```
-Given a customer id, it determines if it is involved in a suspicious ring.
-```
-
-**Arguments:**  
-- `customer_id`: string - The ID of the customer to check.
-
-**Cypher Query:**
-```cypher
-MATCH (c:Customer {id: $customer_id})
-WITH c, 
-
-EXISTS { 
-  MATCH (c)-[:OWNS]->(:Account)-[:FROM|TO*6]->(:Account)
-} AS involved
-
-RETURN involved
-```
-
----
-
-### Tool 4: is_customer_bridge
-
-**Description:**  
-```
-Returns customer details if the customer is employed by more than 2 companies, otherwise returns None.
-```
-
-**Arguments:**  
-- `customer_id` (str): The ID of the customer to check.
-
-**Cypher Query:**
-```cypher
-MATCH (c:Customer {id: $customer_id})-[:EMPLOYED_BY]->(co:Company)
-WITH collect(co.name) AS employer_names, count(*) AS numEmployers, c
-WHERE numEmployers > 2 
-RETURN c.id, c.name, c.on_watchlist, c.is_pep, employer_names
-```
-
----
-
-### Tool 5: is_customer_linked_to_hot_property
-
-**Description:**  
-```
-Check if a customer is linked to a "hot property" (address shared with more than 20 other customers).
-```
-
-**Arguments:**  
-- `customer_id` (str): The ID of the customer to check.
-
-**Cypher Query:**
-```cypher
-MATCH (c:Customer {id: $customer_id})-[:LIVES_AT]->(a:Address)
-
-WITH a, c
-// find all other customers at that address
-MATCH (a)<-[:LIVES_AT]-(other:Customer)
-WHERE other <> c
-
-WITH a, c, count(other) AS num_other_customers
-WHERE num_other_customers > 20
-
-RETURN
-  a.name         AS address,
-  a.city         AS city,
-  num_other_customers,
-  c.name              AS customer_name,
-  c.on_watchlist              AS customer_on_watchlist,
-  c.is_pep              AS customer_is_pep
-```
 
 ## Step 5: Save Agent
 
