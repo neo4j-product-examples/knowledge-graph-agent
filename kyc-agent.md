@@ -9,7 +9,7 @@ This guide walks you through creating a KYC (Know Your Customer) analyst agent u
 
 
 ## Step 2: Set Up The Database
-Make sure you have a Neo4j AuraDB instance running. If you’re new to AuraDB, create an account at https://concole.neo4j.io and click Create Instance.
+Make sure you have a Neo4j AuraDB instance running. If you’re new to AuraDB, create an account at https://console.neo4j.io and click Create Instance.
 
 Wait until your instance is `"RUNNING"`
 
