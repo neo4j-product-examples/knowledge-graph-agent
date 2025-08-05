@@ -1,4 +1,4 @@
-# Neo4j Aura Agent Examples
+# Neo4j Aura Agents
 
 This repository contains step-by-step instructions on how to use the new Aura Agents functionality. These examples demonstrate how to create intelligent agents that can interact with knowledge graphs to answer domain-specific questions.
 
