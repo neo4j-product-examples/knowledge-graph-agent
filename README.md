@@ -1,6 +1,6 @@
-# Neo4j Aura GraphRAG Agent Examples
+# Neo4j Aura Agent Examples
 
-This repository contains step-by-step instructions on how to use the new GraphRAG agent functionality in Neo4j Aura. These examples demonstrate how to create intelligent agents that can interact with knowledge graphs to answer domain-specific questions.
+This repository contains step-by-step instructions on how to use the new Aura Agents functionality. These examples demonstrate how to create intelligent agents that can interact with knowledge graphs to answer domain-specific questions.
 
 
 ## Available Examples
@@ -30,6 +30,6 @@ A specialized agent for supply chain analysis, tracking goods, identifying bottl
 2. Follow the specific tutorial for your use case
 3. Customize the agents and tools for your specific domain requirements
 
-## About GraphRAG Agents
+## About Aura Agents
 
-Neo4j's GraphRAG agents combine the power of large language models with the structured knowledge in your graph database. This enables agents to provide accurate, contextual answers while maintaining data lineage and explainability.
+Neo4j's Aura Agents combine the power of large language models with the structured knowledge in your graph database. This enables agents to provide accurate, contextual answers while maintaining data lineage and explainability.

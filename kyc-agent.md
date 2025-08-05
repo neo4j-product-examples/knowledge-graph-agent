@@ -1,6 +1,6 @@
 # A KYC Agent - Step-by-Step Guide
 
-This guide walks you through creating a KYC (Know Your Customer) analyst agent using Neo4j's Aura GraphRAG Agent functionality.
+This guide walks you through creating a KYC (Know Your Customer) analyst agent using Neo4j's Aura Agents.
 
 ## Step 1: Access Aura Console
 
@@ -21,17 +21,17 @@ Restore from [`kyc-data.backup`](./dump/kyc-data.backup) file (Located under `./
 
 Wait until your instance goes back to `"RUNNING"`
 
-## Step 3: Navigate to GraphRAG Agent
+## Step 3: Navigate to Agents
 
 1. In the Aura Console, locate the **Data Services** section
 
 ![create_agent](./images/1-create-agent.png)
 
-2. Click on **GraphRAG Agent**
+2. Click on ** Agents**
 
-## Step 3: Create GraphRAG Agent
+## Step 3: Create Agent
 
-Click on **Create GraphRAG Agent** and enter the following configuration:
+Click on **Create Agent** and enter the following configuration:
 
 ![Create agent and click add tools](./images/2-agent-create-tool.png)
 
