@@ -14,9 +14,9 @@ Make sure you have a Neo4j AuraDB instance running. If you’re new to AuraDB, c
 Wait until your instance is `"RUNNING"`
 
 
-Using the “…​3 dots” menu in the Aura console, select Backup & Restore
+Using the “…​3 dots” menu in the Aura console, select `Backup & Restore`
 ![restore the KYC DB from backup](./images/restore-backup.png)
-Restore from [`kyc-data.backup`](./dump/kyc-data.backup) file
+Restore from [`kyc-data.backup`](./dump/kyc-data.backup) file (Located under `./dump/kyc-data.backup`)
 
 
 Wait until your instance goes back to `"RUNNING"`
