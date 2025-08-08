@@ -27,13 +27,12 @@ Wait until your instance goes back to `"RUNNING"`
 
 ![create_agent](./images/1-create-agent.png)
 
-2. Click on ** Agents**
+2. Click on **Agents**
 
 ## Step 3: Create Agent
 
 Click on **Create Agent** and enter the following configuration:
 
-![Create agent and click add tools](./images/2-agent-create-tool.png)
 
 ### Agent Configuration
 
@@ -66,14 +65,13 @@ Your responses should be professional, accurate, and tailored to help legal prof
 
 **Target Instance:** Choose your Neo4j instance from the dropdown
 
+![Create agent and click add tools](./images/2-agent-create-tool.png)
 
-Click **Add Tools** and choose `Cypher Template` tool
 
 
 ## Step 4: Add Tools
 
-
-Configure the following tools:
+Click **Add Tools** configure the following tools:
 
 
 ### Tool 1: Get Contract 
@@ -101,8 +99,6 @@ RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name 
 ![Add Get Contract Tool](./images/get-contract-tool.png)
 
 **Click Save**
-
-## Step 5: Add Get Contract Clauses Tool
 
 ### Tool 2: Get Contract Clauses
 
@@ -134,8 +130,6 @@ RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name 
 
 **Click Save**
 
-## Step 6: Add Identify Contracts with and without Clauses
-
 ### Tool 3: Identify Contracts With and Without specific clause types
 
 Add a `Cypher Template Tool`
@@ -153,12 +147,14 @@ The only possible values for with_clause types and without_clause_type are: "Aff
 
 **Parameters:**  
 - Name = `with_clause_type`. Type = `string`. 
-Description = 
+
+Description
 ```
 The contract has this type of clause. The only possible values for with_clause types and without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
 ```
 
-- Name = `without_clause_type`. Type = `string`. 
+- Name = `without_clause_type`. Type = `string`.
+
 Description 
 ```
 The contract does not include a clause of this type. The only possible values for with_clause types and without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
@@ -178,8 +174,6 @@ RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name 
 ![Add Get Contract With and Without Clauses Tool](./images/get-contracts-with-and-without.png)
 
 **Click Save**
-
-## Step 7: Add Identify Contracts with Similar Text in Clauses
 
 ### Tool 4: Identify Contracts with Similar Text in Clauses
 
@@ -218,8 +212,6 @@ excerpt_embedding
 
 **Click Save**
 ![Add Identify Contracts with Similar Text in Clauses Tool](./images/get-similar-excerpts.png)
-
-## Step 8: Add Get Contract Info for Excerpt ID
 
 ### Tool 5: Get Contract Info for Excerpt ID
 
@@ -261,8 +253,6 @@ RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name 
 ![Add Get Contract Info for Excerpt ID Tool](./images/get-contract-for-execerpt-id.png)
 **Click Save**
 
-## Step 9: Add Text2Cypher Tool for system-wide aggregation questions
-
 ### Tool 6: Tool for system-wide aggregation questions
 
 Add a `Text2Cypher Tool`
@@ -278,8 +268,6 @@ Use this tool to answer free-form questions that involve aggregation of organiza
 ```
 ![Add Text2Cypher Tool](./images/t2c-tool.png)
 **Click Save**
-
-## Step 10: Add "Identify Contracts for organization" Tool
 
 ### Tool 7: Identify Contracts for organization
 
@@ -326,8 +314,6 @@ RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name 
 ```
 ![Add Identify Contracts for organization Tool](./images/get-contracts-for-organization.png)
 **Click Save**
-
-## Step 11: Add "Check Contract Contains Clause Type" Tool
 
 ### Tool 8: Check Contract Contains Clause Type
 
@@ -383,8 +369,6 @@ RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name 
 ![Add Check Contract Contains Clause Type Tool](./images/contract-contains-clause-type.png)
 **Click Save**
 
-## Step 12: Add "Identify Contracts with Clause Type" Tool
-
 ### Tool 9: Identify Contracts with Clause Type
 
 Add a `Cypher Template Tool`
@@ -428,15 +412,13 @@ RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name 
 ![Add Identify Contracts with Clause Type Tool](./images/get-contracts-with-clause-type.png)
 **Click Save**
 
-
-## Step 13: Save Agent
-
+## Save Agent
 Once all tools have been configured:
 
 Click **Save Agent** to deploy your Contract Review Agent
 
 
-## Test Your Agent
+## Test Agent
 
 Your Contract Review Agent Agent is now ready to assist you.
 
