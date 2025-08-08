@@ -2,8 +2,34 @@
 
 This repository contains step-by-step instructions on how to use the new Aura Agents functionality. These examples demonstrate how to create intelligent agents that can interact with knowledge graphs to answer domain-specific questions.
 
+## Getting Started
+### Prerequisites
 
-## Available Examples
+1. **Git LFS (Large File Storage)**: This repository contains large backup files that require Git LFS. Install Git LFS before cloning:
+   ```bash
+   # Install Git LFS (if not already installed)
+   git lfs install
+   
+   # Clone the repository
+   git clone https://github.com/neo4j-product-examples/knowledge-graph-agent.git
+   ```
+   
+   If you've already cloned without Git LFS, you can fetch the large files by running:
+   ```bash
+   git lfs pull
+   ```
+
+2. Ensure you have access to Neo4j Aura at [https://console-preview.neo4j.io/](https://console-preview.neo4j.io/)
+
+### Setup Steps
+
+1. Clone this repository (with Git LFS as described above)
+2. Follow the specific tutorial for your use case
+3. Customize the agents and tools for your specific domain requirements
+
+
+
+## Agents Available
 
 ### Financial Services - Know Your Customer (KYC) Agent
 
@@ -32,12 +58,7 @@ Our Contract Review example demonstrates how to build an intelligent agent for l
 ### Supply Chain Agent  
 A specialized agent for supply chain analysis, tracking goods, identifying bottlenecks, and optimizing logistics.
 
-## Getting Started
-
-1. Ensure you have access to Neo4j Aura at [https://console-preview.neo4j.io/](https://console-preview.neo4j.io/)
-2. Follow the specific tutorial for your use case
-3. Customize the agents and tools for your specific domain requirements
 
 ## About Aura Agents
 
-Neo4j's Aura Agents combine the power of large language models with the structured knowledge in your graph database. This enables agents to provide accurate, contextual answers while maintaining data lineage and explainability.
+Neo4j's Aura Agents combine the power of large language models with the structured knowledge in a Neo4j knowledge graph. This enables agents to provide accurate, contextual answers while maintaining data lineage and explainability.
