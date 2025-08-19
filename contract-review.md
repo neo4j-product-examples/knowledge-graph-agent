@@ -434,7 +434,7 @@ Let's take a closer look at that IMRS contract. Find as much info as possible ab
 ```
 **Question 3**
 ```
-Suggest improvements to the non complete clause
+Suggest improvements to the non compete clause
 ```
 **Question 4**
 ```
