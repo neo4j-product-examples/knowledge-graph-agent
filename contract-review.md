@@ -36,21 +36,21 @@ Click on **Create Agent** and enter the following configuration:
 
 ### Agent Configuration
 
-**Agent Name:** 
+**Agent Name:**
 ```
 Contract Review Agent
 ```
 
-**Description:** 
+**Description:**
 ```
 A legal contract review agent with access to a Neo4j knowledge graph for analyzing contracts, clauses, and legal risks.
 ```
 
-**Instructions:**
+**Prompt instructions:**
 ```
 You are a Commercial Contract Review Agent, a specialized AI assistant for commercial contract analysis using a Knowledge Graph of multiple contracts. You are a Neo4j expert with excellent knowledge of Cypher and a paralegal expert who can help junior legal professionals answer important commercial contract review questions.
 
-You have access to a comprehensive knowledge graph containing contract data, clauses. You can query this graph using tools and Cypher to help you get answers. 
+You have access to a comprehensive knowledge graph containing contract data, clauses. You can query this graph using tools and Cypher to help you get answers.
 
 You can support legal professionals by:
 - Identifying high-risk contracts with missing or problematic clauses
@@ -74,7 +74,7 @@ Your responses should be professional, accurate, and tailored to help legal prof
 Click **Add Tools** configure the following tools:
 
 
-### Tool 1: Get Contract 
+### Tool 1: Get Contract
 
 Add a `Cypher Template Tool`
 
@@ -83,10 +83,10 @@ Add a `Cypher Template Tool`
 Get Contract
 ```
 
-**Description:**  
+**Description:**
 Given a contract id retrieves information about the agreement including type, name, effective date, expiration date, parties to the contract and country of incorporation of each party
 
-**Parameters:**  
+**Parameters:**
 - Name = `contract_id`. Type = `string`. Description = `The id of the contract to look up`
 
 **Cypher Query:**
@@ -109,10 +109,10 @@ Add a `Cypher Template Tool`
 Get Contract Clauses
 ```
 
-**Description:**  
+**Description:**
 Given a contract id, it retrieves information about the contract and its clauses, including the clause types and the excerpts from the original contract for each clause type
 
-**Parameters:**  
+**Parameters:**
 - Name = `contract_id`. Type = `string`. Description = `The id of the contract`
 
 **Cypher Query:**
@@ -123,7 +123,7 @@ With a,cc,e
 
 MATCH (country:Country)-[i:INCORPORATED_IN]-(p:Organization)-[r:IS_PARTY_TO]-(a)
 
-RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name as contract_name, a.effective_date as effective_date, a.renewal_term as renewal_term, a.expiration_date as expiration_date, cc.type as contract_clause_type, collect (p.names) as parties,collect(e.text) as clauses 
+RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name as contract_name, a.effective_date as effective_date, a.renewal_term as renewal_term, a.expiration_date as expiration_date, cc.type as contract_clause_type, collect (p.names) as parties,collect(e.text) as clauses
 ```
 
 ![Add Get Contract Clauses Tool](./images/get-contract-clauses-tool.png)
@@ -139,14 +139,14 @@ Add a `Cypher Template Tool`
 Identify Contracts With and Without specific clause types
 ```
 
-**Description:** 
-``` 
+**Description:**
+```
 Identify high-risk contracts that contain a clause of a certain type but do not contain a clause of a different type.
 The only possible values for with_clause types and without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
 ```
 
-**Parameters:**  
-- Name = `with_clause_type`. Type = `string`. 
+**Parameters:**
+- Name = `with_clause_type`. Type = `string`.
 
 Description
 ```
@@ -155,7 +155,7 @@ The contract has this type of clause. The only possible values for with_clause t
 
 - Name = `without_clause_type`. Type = `string`.
 
-Description 
+Description
 ```
 The contract does not include a clause of this type. The only possible values for with_clause types and without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
 ```
@@ -184,28 +184,28 @@ Add a `Similarity Search Tool`
 Identify Contracts with similar Text in Clauses
 ```
 
-**Description:** 
+**Description:**
 ```
 Given a piece of text, It identifies the most semantically similar Excerpts in the system
 ```
 
 ### Embedding Provider Section
-**Target Instance:** 
+**Embedding provider:**
 ```
 Vertex AI
 ```
 
-**Embedding Model:** 
+**Embedding Model:**
 ```
 gemini-embedding-001
 ```
 
 ### Vector Index Section
-**Index Name:** 
+**Index Name:**
 ```
 excerpt_embedding
 ```
-**Top K:** 
+**Top K:**
 ```
 5
 ```
@@ -222,18 +222,18 @@ Add a `Cypher Template Tool`
 Get Contract Info for Excerpt ID
 ```
 
-**Description:**  
+**Description:**
 ```
 Given a Excerpt ID, it provides details of the contract where that excerpt appears.
 ```
 
-**Parameters:**  
-Name 
+**Parameters:**
+Name
 ```
 excerpt_id
-``` 
+```
 Type
-``` 
+```
 string
 ```
 Description
@@ -245,7 +245,7 @@ The excerpt id to find its related contract.
 ```cypher
 MATCH (e:Excerpt {id: $excerpt_id})<-[:HAS_EXCERPT]-(cc:ContractClause)<-[:HAS_CLAUSE]-(a:Agreement)
 
-with a
+WITH a
 MATCH (country:Country)-[i:INCORPORATED_IN]-(p:Organization)-[r:IS_PARTY_TO]-(a)
 
 RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name as contract_name, a.effective_date as effective_date, a.renewal_term as renewal_term, a.expiration_date as expiration_date, collect(p.name) as contract_parties
@@ -262,7 +262,7 @@ Add a `Text2Cypher Tool`
 Tool for system-wide aggregation questions
 ```
 
-**Description:**  
+**Description:**
 ```
 Use this tool to answer free-form questions that involve aggregation of organizations, contract clauses, clause types, contracts, countries, parties to contracts etc
 ```
@@ -278,21 +278,21 @@ Add a `Cypher Template Tool`
 Identify Contracts for organization
 ```
 
-**Description:**  
+**Description:**
 ```
 Given an organization name, it performs a full-text search on the organization name. It finds the organization with the most similar name and retrieve a list of contracts that the organization is a party of.
 ```
 
-**Parameters:**  
-Name 
+**Parameters:**
+Name
 ```
 organization_name
-``` 
-Type 
+```
+Type
 ```
 string
-``` 
-Description 
+```
+Description
 ```
 The company name to be looked up
 ```
@@ -304,7 +304,7 @@ YIELD node AS o, score
 WITH o, score
 ORDER BY score DESC
 LIMIT 1
-// 
+//
 WITH o
 MATCH (o)-[:IS_PARTY_TO]->(a:Agreement)
 WITH a
@@ -324,35 +324,35 @@ Add a `Cypher Template Tool`
 Check Contract Contains Clause Type
 ```
 
-**Description:**  
+**Description:**
 ```
 Check if a given contract has a clause of a given type
 ```
 
-**Parameters:**  
-Name 
+**Parameters:**
+Name
 ```
 clause_type
-``` 
-Type 
+```
+Type
 ```
 string
-``` 
-Description 
+```
+Description
 ```
 The contract has this type of clause.
 The only possible values for with_clause types and without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
 ```
 
-Name 
+Name
 ```
 contract_id
-``` 
-Data Type 
+```
+Data Type
 ```
 string
-``` 
-Description 
+```
+Description
 ```
 The id of the contract
 ```
@@ -378,21 +378,21 @@ Add a `Cypher Template Tool`
 Identify Contracts with Clause Type
 ```
 
-**Description:**  
+**Description:**
 ```
 Identify contracts that contain a clause of a certain type
 ```
 
-**Parameters:**  
-Name 
+**Parameters:**
+Name
 ```
 clause_type
-``` 
-Type 
+```
+Type
 ```
 string
-``` 
-Description 
+```
+Description
 ```
 The contract has this type of clause.
 The only possible values for with_clause types and without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
