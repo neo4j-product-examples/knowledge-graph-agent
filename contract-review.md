@@ -430,11 +430,11 @@ Find contracts with caps and no insurance clauses
 ```
 **Question 2**
 ```
-Let's take a closer look at that IMRS contract. Find as much info as possible about it.
+Let's take a closer look at that IMRS contract. Find as much info as possible about it (including key clauses)
 ```
 **Question 3**
 ```
-Suggest improvements to the non compete clause
+Suggest improvements to and highlight weaknesses in the non compete clause
 ```
 **Question 4**
 ```
@@ -466,7 +466,7 @@ Find contracts with clauses containing text similar to IP licensing expiration
 ```
 **Question 11**
 ```
-Find more details about the Motorola contract, include its clauses
+Find details about the Motorola contract, include its clauses
 ```
 **Question 12**
 ```
