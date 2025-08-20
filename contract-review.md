@@ -454,11 +454,11 @@ For the most recent of these contracts, list their key clauses
 ```
 **Question 8**
 ```
-Suggest ways to improve the licent grant clause
+Suggest ways to improve the license grant clause
 ```
 **Question 9**
 ```
-Flag this clasue for review by Sr counsel
+Flag this clause for review by Sr counsel
 ```
 **Question 10**
 ```
