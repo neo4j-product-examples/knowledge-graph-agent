@@ -30,7 +30,7 @@ Wait until your instance goes back to `"RUNNING"`
 
 ## Step 3: Navigate to Agents
 
-Within your Organization, go back to your Aura project
+Within your Organization, `Open` your Aura project
 ![Go back to your Aura Project](./images/back-to-project.png)
 
 1. In the Aura Console, locate the **Data Services** section
