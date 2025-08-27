@@ -6,6 +6,8 @@ This guide walks you through creating a KYC (Know Your Customer) analyst agent u
 
 1. Navigate to the **Aura Console**: [https://console-preview.neo4j.io/](https://console-preview.neo4j.io/)
 2. Log in with your Aura credentials
+3. Enable `Generative AI assistance` for your Aura Organization
+![Enable GenAI assistance](./images/enable-ai.png)
 
 
 ## Step 2: Set Up The Database
@@ -18,8 +20,13 @@ Using the “…​3 dots” menu in the Aura console, select `Backup & Restore`
 ![restore the KYC DB from backup](./images/restore-backup.png)
 Restore from [`kyc-data.backup`](./dump/kyc-data.backup) file (Located under `./dump/kyc-data.backup`)
 
-
 Wait until your instance goes back to `"RUNNING"`
+
+### Allow Tools Authenticationto connect to your Instance
+- Go back to your Organization -> Security Settings 
+- Activate `Allow tools to connect with permissions from the user's project role`
+- Make your to select your `KYC instance`
+![Enable GenAI assistance](./images/allow-tool-auth.png)
 
 ## Step 3: Navigate to Agents
 
