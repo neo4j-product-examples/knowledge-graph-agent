@@ -21,13 +21,17 @@ Restore from [`contract-data.backup`](./dump/contract-data.backup) file (Located
 
 Wait until your instance goes back to `"RUNNING"`
 
-### Allow Tools Authenticationto connect to your Instance
+### Allow Tools Authentication to connect to your Instance
 - Go back to your Organization -> Security Settings 
 - Activate `Allow tools to connect with permissions from the user's project role`
 - Make your to select your `Contract DB instance`
-![Enable GenAI assistance](./images/allow-tool-auth.png)
+![Allow Tools Authentication](./images/allow-tool-auth.png)
 
 ## Step 3: Navigate to Agents
+
+Within your Organization, go back to your Aura project
+![Go back to your Aura Project](./images/back-to-project.png)
+
 
 1. In the Aura Console, locate the **Data Services** section
 
