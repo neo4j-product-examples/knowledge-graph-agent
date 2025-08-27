@@ -24,7 +24,7 @@ Wait until your instance goes back to `"RUNNING"`
 ### Allow Tools Authenticationto connect to your Instance
 - Go back to your Organization -> Security Settings 
 - Activate `Allow tools to connect with permissions from the user's project role`
-- Make your to select your `KYC instance`
+- Make your to select your `Contract DB instance`
 ![Enable GenAI assistance](./images/allow-tool-auth.png)
 
 ## Step 3: Navigate to Agents
