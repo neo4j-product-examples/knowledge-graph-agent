@@ -140,52 +140,7 @@ RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name 
 
 **Click Save**
 
-### Tool 3: Identify Contracts With and Without specific clause types
-
-Add a `Cypher Template Tool`
-
-**Name**
-```
-Identify Contracts With and Without specific clause types
-```
-
-**Description:**
-```
-Identify high-risk contracts that contain a clause of a certain type but do not contain a clause of a different type.
-The only possible values for with_clause types and without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
-```
-
-**Parameters:**
-- Name = `with_clause_type`. Type = `string`.
-
-Description
-```
-The contract has this type of clause. The only possible values for with_clause types and without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
-```
-
-- Name = `without_clause_type`. Type = `string`.
-
-Description
-```
-The contract does not include a clause of this type. The only possible values for with_clause types and without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
-```
-
-**Cypher Query:**
-```cypher
-MATCH (a:Agreement)-[:HAS_CLAUSE]->(:ContractClause {type:$with_clause_type})
-WHERE NOT (a)-[:HAS_CLAUSE]->(:ContractClause {type:$without_clause_type})
-LIMIT 5
-
-WITH a
-MATCH (country:Country)-[i:INCORPORATED_IN]-(p:Organization)-[r:IS_PARTY_TO]-(a)
-
-RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name as contract_name, a.effective_date as effective_date, a.renewal_term as renewal_term, a.expiration_date as expiration_date, collect(p.name) as contract_parties
-```
-![Add Get Contract With and Without Clauses Tool](./images/get-contracts-with-and-without.png)
-
-**Click Save**
-
-### Tool 4: Identify Contracts with Similar Text in Clauses
+### Tool 3: Identify Contracts with Similar Text in Clauses
 
 Add a `Similarity Search Tool`
 
@@ -223,7 +178,7 @@ excerpt_embedding
 **Click Save**
 ![Add Identify Contracts with Similar Text in Clauses Tool](./images/get-similar-excerpts.png)
 
-### Tool 5: Get Contract Info for Excerpt ID
+### Tool 4: Get Contract Info for Excerpt ID
 
 Add a `Cypher Template Tool`
 
@@ -263,7 +218,7 @@ RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name 
 ![Add Get Contract Info for Excerpt ID Tool](./images/get-contract-for-execerpt-id.png)
 **Click Save**
 
-### Tool 6: Tool for system-wide aggregation questions
+### Tool 5: Tool for system-wide aggregation questions
 
 Add a `Text2Cypher Tool`
 
@@ -279,7 +234,7 @@ Use this tool to answer free-form questions that involve aggregation of organiza
 ![Add Text2Cypher Tool](./images/t2c-tool.png)
 **Click Save**
 
-### Tool 7: Identify Contracts for organization
+### Tool 6: Identify Contracts for organization
 
 Add a `Cypher Template Tool`
 
@@ -325,103 +280,6 @@ RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name 
 ![Add Identify Contracts for organization Tool](./images/get-contracts-for-organization.png)
 **Click Save**
 
-### Tool 8: Check Contract Contains Clause Type
-
-Add a `Cypher Template Tool`
-
-**Name**
-```
-Check Contract Contains Clause Type
-```
-
-**Description:**
-```
-Check if a given contract has a clause of a given type
-```
-
-**Parameters:**
-Name
-```
-clause_type
-```
-Type
-```
-string
-```
-Description
-```
-The contract has this type of clause.
-The only possible values for with_clause types and without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
-```
-
-Name
-```
-contract_id
-```
-Data Type
-```
-string
-```
-Description
-```
-The id of the contract
-```
-
-**Cypher Query:**
-```cypher
-MATCH (a:Agreement {contract_id:$contract_id})-[:HAS_CLAUSE]->(:ContractClause {type:$clause_type})
-
-WITH a
-MATCH (country:Country)-[i:INCORPORATED_IN]-(p:Organization)-[r:IS_PARTY_TO]-(a)
-
-RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name as contract_name, a.effective_date as effective_date, a.renewal_term as renewal_term, a.expiration_date as expiration_date, collect (p.name) as contract_parties
-```
-![Add Check Contract Contains Clause Type Tool](./images/contract-contains-clause-type.png)
-**Click Save**
-
-### Tool 9: Identify Contracts with Clause Type
-
-Add a `Cypher Template Tool`
-
-**Name**
-```
-Identify Contracts with Clause Type
-```
-
-**Description:**
-```
-Identify contracts that contain a clause of a certain type
-```
-
-**Parameters:**
-Name
-```
-clause_type
-```
-Type
-```
-string
-```
-Description
-```
-The contract has this type of clause.
-The only possible values for with_clause types and without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
-```
-
-**Cypher Query:**
-```cypher
-MATCH (a:Agreement)-[:HAS_CLAUSE]->(:ContractClause {type:$clause_type})
-LIMIT 5
-
-WITH a
-MATCH (country:Country)-[i:INCORPORATED_IN]-(p:Organization)-[r:IS_PARTY_TO]-(a)
-
-RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name as contract_name, a.effective_date as effective_date, a.renewal_term as renewal_term, a.expiration_date as expiration_date
-```
-
-![Add Identify Contracts with Clause Type Tool](./images/get-contracts-with-clause-type.png)
-**Click Save**
-
 ## Save Agent
 Once all tools have been configured:
 
@@ -436,49 +294,34 @@ Your agent should be able to answer the following lines of questioning
 
 **Question 1**
 ```
-Find contracts with caps and no insurance clauses
+How many contracts, clauses and organizations are there in the system?
 ```
 **Question 2**
 ```
-Let's take a closer look at that IMRS contract. Find as much info as possible about it (including key clauses)
+List the top 5 organizations with the most contracts
 ```
 **Question 3**
 ```
-Suggest improvements to and highlight weaknesses in the non compete clause
+Find contracts for Netgear
 ```
 **Question 4**
 ```
-How many contracts, clauses and organizations are there in the system?
+For the most recent of these contracts, list their key clauses
 ```
 **Question 5**
 ```
-List the top 5 organizations with the most contracts
-```
-**Question 6**
-```
-Find contracts for Netgear
-```
-**Question 7**
-```
-For the most recent of these contracts, list their key clauses
-```
-**Question 8**
-```
 Suggest ways to improve the license grant clause
 ```
-**Question 9**
-```
-Flag this clause for review by Sr counsel
-```
-**Question 10**
+
+**Question 6**
 ```
 Find contracts with clauses containing text similar to IP licensing expiration
 ```
-**Question 11**
+**Question 7**
 ```
 Find details about the Motorola contract, include its clauses
 ```
-**Question 12**
+**Question 8**
 ```
 highlight the pros and cons of the change of control clause
 ```
