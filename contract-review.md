@@ -97,7 +97,7 @@ Get Contract
 Given a contract id retrieves information about the agreement including type, name, effective date, expiration date, parties to the contract and country of incorporation of each party
 
 **Parameters:**
-- Name = `contract_id`. Type = `int`. Description = `The id of the contract to look up`
+- Name = `contract_id`. Type = `integer`. Description = `The id of the contract to look up`
 
 **Cypher Query:**
 ```cypher
@@ -123,7 +123,7 @@ Get Contract Clauses
 Given a contract id, it retrieves information about the contract and its clauses, including the clause types and the excerpts from the original contract for each clause type
 
 **Parameters:**
-- Name = `contract_id`. Type = `int`. Description = `The id of the contract`
+- Name = `contract_id`. Type = `integer`. Description = `The id of the contract`
 
 **Cypher Query:**
 ```cypher
@@ -199,7 +199,7 @@ excerpt_id
 ```
 Type
 ```
-string
+integer
 ```
 Description
 ```
