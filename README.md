@@ -31,17 +31,6 @@ This repository contains step-by-step instructions on how to use the new Aura Ag
 
 ## Agents Available
 
-### Financial Services - Know Your Customer (KYC) Agent
-
-Our comprehensive KYC example shows how to build an intelligent agent for fraud investigation and compliance analysis. The agent can:
-- Identify customers involved in suspicious transaction rings
-- Detect customers linked to "hot properties" (addresses with many residents)
-- Find customers who work for multiple companies (potential bridges)
-- Provide detailed customer profiles and risk assessments
-
-**[📖 View the complete KYC Agent tutorial](./kyc-agent.md)**
-
-
 ### Legal - Commercial Contract Review Agent
 
 Our Contract Review example demonstrates how to build an intelligent agent for legal professionals. The agent can:
@@ -53,12 +42,18 @@ Our Contract Review example demonstrates how to build an intelligent agent for l
 
 **[📖 View the complete Contract Review Agent tutorial](./contract-review.md)**
 
-## Coming Soon
+### Financial Services - Know Your Customer (KYC) Agent
 
-### Supply Chain Agent  
-A specialized agent for supply chain analysis, tracking goods, identifying bottlenecks, and optimizing logistics.
+Our comprehensive KYC example shows how to build an intelligent agent for fraud investigation and compliance analysis. The agent can:
+- Identify customers involved in suspicious transaction rings
+- Detect customers linked to "hot properties" (addresses with many residents)
+- Find customers who work for multiple companies (potential bridges)
+- Provide detailed customer profiles and risk assessments
+
+**[📖 View the complete KYC Agent tutorial](./kyc-agent.md)**
 
 
-## About Aura Agents
+## About Aura Agent
 
-Neo4j's Aura Agents combine the power of large language models with the structured knowledge in a Neo4j knowledge graph. This enables agents to provide accurate, contextual answers while maintaining data lineage and explainability.
+Neo4j's Aura Agent combine the power of large language models with the structured knowledge in a Neo4j knowledge graph. 
+This enables Aura agents to provide accurate, contextually relevant grounded by your knowledge graph. It helps improve explainability of your agent answers.

@@ -17,7 +17,8 @@ Wait until your instance is `"RUNNING"`
 
 
 Using the “…​3 dots” menu in the Aura console, select `Backup & Restore`
-![restore the KYC DB from backup](./images/restore-backup.png)
+![restore the KYC DB from backup](./images/kyc-restore-backup.png)
+
 Restore from [`kyc-data.backup`](./dump/kyc-data.backup) file (Located under `./dump/kyc-data.backup`)
 
 Wait until your instance goes back to `"RUNNING"`
@@ -35,7 +36,7 @@ Within your Organization, `Open` your Aura project
 
 1. In the Aura Console, locate the **Data Services** section
 
-![create_agent](./images/1-create-agent.png)
+![create_agent](./images/data-services-agent.png)
 
 2. Click on ** Agents**
 

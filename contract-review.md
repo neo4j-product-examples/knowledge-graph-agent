@@ -10,13 +10,13 @@ This guide walks you through creating a Commericial Contract Review agent for le
 ![Enable GenAI assistance](./images/enable-ai.png)
 
 ## Step 2: Set Up The Database
-Make sure you have a Neo4j AuraDB instance running. If you're new to AuraDB, create an account at https://console.neo4j.io and click Create Instance.
+Make sure you have a Neo4j AuraDB instance running. If you're new to AuraDB, create an account at https://console.neo4j.io and click `Create Instance`.
 
 Wait until your instance is `"RUNNING"`
 
 
 Using the "…​3 dots" menu in the Aura console, select `Backup & Restore`
-![restore the Contract DB from backup](./images/restore-backup.png)
+![restore the Contract DB from backup](./images/contract-restore-backup.png)
 Restore from [`contract-data.backup`](./dump/contract-data.backup) file (Located under `./dump/contract-data.backup`)
 
 Wait until your instance goes back to `"RUNNING"`
@@ -35,14 +35,14 @@ Within your Organization, `Open` your Aura project
 
 1. In the Aura Console, locate the **Data Services** section
 
-![create_agent](./images/1-create-agent.png)
+![create_agent](./images/data-services-agent.png)
 
 2. Click on **Agents**
 
 ## Step 3: Create Agent
 
 Click on **Create Agent** and enter the following configuration:
-
+![Create agent and click add tools](./images/1-contract-create-agent.png)
 
 ### Agent Configuration
 
@@ -75,9 +75,6 @@ Your responses should be professional, accurate, and tailored to help legal prof
 
 **Target Instance:** Choose your Neo4j instance from the dropdown
 
-![Create agent and click add tools](./images/2-agent-create-tool.png)
-
-
 
 ## Step 4: Add Tools
 
@@ -94,7 +91,9 @@ Get Contract
 ```
 
 **Description:**
+```
 Given a contract id retrieves information about the agreement including type, name, effective date, expiration date, parties to the contract and country of incorporation of each party
+```
 
 **Parameters:**
 - Name = `contract_id`. Type = `integer`. Description = `The id of the contract to look up`
@@ -140,18 +139,18 @@ RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name 
 
 **Click Save**
 
-### Tool 3: Identify Contracts with Similar Text in Clauses
+### Tool 3: Identify Contracts with Similar Text in Clause Excerpts
 
 Add a `Similarity Search Tool`
 
 **Name**
 ```
-Identify Contracts with similar Text in Clauses
+Identify Contracts with similar Text in Clause Excerpts
 ```
 
 **Description:**
 ```
-Given a piece of text, It identifies the most semantically similar Excerpts in the system
+Given a piece of text, It identifies the most semantically similar clause Excerpts in the system
 ```
 
 ### Embedding Provider Section
@@ -280,6 +279,65 @@ RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name 
 ![Add Identify Contracts for organization Tool](./images/get-contracts-for-organization.png)
 **Click Save**
 
+### Tool 7: Identify Contracts With and Without specific clause types
+
+Add a `Cypher Template Tool`
+
+**Name**
+```
+Identify Contracts With and Without specific clause types
+```
+
+**Description:**
+```
+Identify high-risk contracts that contain a clause of a certain type but do not contain a clause of a different type.
+The only possible values for with_clause types and without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
+```
+
+**Parameters:**
+Name
+```
+with_clause_type
+```
+Type
+```
+string
+```
+Description
+```
+The contract has this type of clause.
+The only possible values for with_clause types are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
+```
+
+Name
+```
+without_clause_type
+```
+Type
+```
+string
+```
+Description
+```
+The contract does not include a clause of this type. 
+The only possible values for without_clause_type are: "Affiliate License-Licensee","Affiliate License-Licensor","Anti-Assignment","Audit Rights","Cap On Liability","Change Of Control","Competitive Restriction Exception","Covenant Not To Sue","Competitive Restriction Exception","Exclusivity","IP Ownership Assignment","Insurance","Irrevocable Or Perpetual License","Joint IP Ownership","License Grant","Liquidated Damages","Minimum Commitment","No-Solicit Of Customers","No-Solicit Of Employees","Non-Compete","Non-Disparagement","Non-Transferable License","Post-Termination Services","Price Restrictions","Revenue/Profit Sharing","Rofr/Rofo/Rofn","Source Code Escrow","Third Party Beneficiary","Uncapped Liability","Unlimited/All-You-Can-Eat-License","Volume Restriction","Warranty Duration"
+```
+
+**Cypher Query:**
+```cypher
+MATCH (a:Agreement)-[:HAS_CLAUSE]->(cc_with:ContractClause {type: $with_clause_type})
+WHERE NOT EXISTS {
+    MATCH (a)-[:HAS_CLAUSE]->(cc_without:ContractClause {type: $without_clause_type})
+}
+WITH a
+MATCH (country:Country)-[i:INCORPORATED_IN]-(p:Organization)-[r:IS_PARTY_TO]-(a)
+RETURN a.contract_id as contract_id, a.agreement_type as agreement_type, a.name as contract_name, a.effective_date as effective_date, a.renewal_term as renewal_term, a.expiration_date as expiration_date, collect(p.name) as party_names, collect(r.role) as party_roles, collect(country.name) as party_incorporated_countries
+```
+
+**Click Save**
+
+
+
 ## Save Agent
 Once all tools have been configured:
 
@@ -312,17 +370,86 @@ For the most recent of these contracts, list their key clauses
 ```
 Suggest ways to improve the license grant clause
 ```
-
 **Question 6**
 ```
-Find contracts with clauses containing text similar to IP licensing expiration
+Find contracts with unlimited liability and no insurance clauses
 ```
 **Question 7**
 ```
+Get information about these contracts including their clauses
+```
+
+**Question 8**
+```
+Find contracts with clauses containing text similar to IP licensing expiration
+```
+**Question 9**
+```
 Find details about the Motorola contract, include its clauses
 ```
-**Question 8**
+**Question 10**
 ```
 highlight the pros and cons of the change of control clause
 ```
+
+## Make Your Agent Publicly Accessible 
+
+Once you are satisfied with your agent answers, you can make it securely available to your GenAI applications via an API Endpoint.
+
+Go back and edit your agent, make sure you set it to `External`
+![Set Agent Public](./images/contract-external.png)
+**Click Save**
+
+Wait 1-2 minutes and your agent now has Public API endpoint
+
+Click `Copy endpoint`
+![Set Agent Public](./images/contract-agent-endpoint.png)
+
+Your agent has an Aura API endpoint.
+
+### Generate Aura API Keys
+You will need to generate API keys for an external application to authenticate to your endpoint.
+
+Go to Your Account settings page and locate `API Keys`
+![Set Agent Public](./images/generate-api-keys.png)
+
+Click `Generate API Key`, give it a name and make a note of your new `Client ID` and `Client Secret`
+
+Keep `Client ID and Secret` secure. Do not share.
+
+
+### Test Your Agent from Terminal
+Verify external access by opening a terminal window
+
+Run the following commands
+```
+export CLIENT_ID=<enter your Client ID here>
+export CLIENT_SECRET=<enter your Client Secret here>
+export ENDPOINT_URL=<enter your agent endpoint URL>
+```
+
+Get an Aura API token
+```
+export BEARER_TOKEN=$(curl -s --request POST 'https://api.neo4j.io/oauth/token' \
+     --user "$CLIENT_ID:$CLIENT_SECRET" \
+     --header 'Content-Type: application/x-www-form-urlencoded' \
+     --data-urlencode 'grant_type=client_credentials' | jq -r .access_token)
+```
+
+Ask your Agent a Question via the agent API endpoint
+```
+curl --request POST "$ENDPOINT_URL" \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H "Authorization: Bearer $BEARER_TOKEN" \
+  -d '{"input": "find Motorola contracts"}' --max-time 60 \
+  | jq .
+```
+
+Your agent reply looks like this
+
+![Agent Response via API](./images/contract-agent-api-endpoint.png)
+
+
+
 
