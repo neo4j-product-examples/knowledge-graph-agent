@@ -1,1 +1,9 @@
 .DS_Store
+
+# Environment files
+.env
+*.env
+
+# contract review mcp environment variables and virtual environment
+./code/contract-review-mcp/.venv/
+./code/contract-review-mcp/.env
