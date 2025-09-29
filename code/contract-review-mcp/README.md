@@ -29,6 +29,7 @@ In the coming weeks, the agent will be available to be made external as a Remote
    uv run contract_review_server.py
    ```
    This will start the MCP server and verify it's working correctly.
+   ![Verify Local MCP Server works before adding to Claude ](../../images/fastmcp-server.png)
 
 4. **Add local server to Claude Desktop configuration**
    
