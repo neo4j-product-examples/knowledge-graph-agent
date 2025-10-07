@@ -1,6 +1,6 @@
-# Neo4j Aura Agents
+# Neo4j Aura Agent
 
-This repository contains step-by-step instructions on how to use the new Aura Agents functionality. These examples demonstrate how to create intelligent agents that can interact with knowledge graphs to answer domain-specific questions.
+This repository contains step-by-step instructions on how to use the new Neo4j Aura Agent functionality. These examples demonstrate how to create intelligent agents that can interact with knowledge graphs to answer domain-specific questions.
 
 ## Getting Started
 ### Prerequisites
@@ -53,7 +53,7 @@ Our comprehensive KYC example shows how to build an intelligent agent for fraud 
 **[📖 View the complete KYC Agent tutorial](./kyc-agent.md)**
 
 
-## About Aura Agent
+## About Neo4j Aura Agent
 
-Neo4j's Aura Agent combine the power of large language models with the structured knowledge in a Neo4j knowledge graph. 
+Neo4j's Aura Agent combines the power of large language models with the structured knowledge in a Neo4j knowledge graph. 
 This enables Aura agents to provide accurate, contextually relevant grounded by your knowledge graph. It helps improve explainability of your agent answers.
