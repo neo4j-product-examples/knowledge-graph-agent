@@ -52,6 +52,12 @@ Our comprehensive KYC example shows how to build an intelligent agent for fraud 
 
 **[📖 View the complete KYC Agent tutorial](./kyc-agent.md)**
 
+### People/HR - Employee Agent
+
+Our employee agent example demonstrates how to build an intelligent agent for skills analysis, talent search, team formation & HR. 
+
+**[📖 View the complete Employee Agent tutorial](./employee-agent.md)**
+
 
 ## About Neo4j Aura Agent
 
