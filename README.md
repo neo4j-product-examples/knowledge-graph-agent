@@ -42,6 +42,10 @@ Our Contract Review example demonstrates how to build an intelligent agent for l
 
 **[📖 View the complete Contract Review Agent tutorial](./contract-review.md)**
 
+> **Learn more about CUAD**: The Contract Understanding Atticus Dataset (CUAD) v1 is a corpus of 13,000+ labels in 510 commercial legal contracts. For more information, visit the [Atticus Project CUAD page](https://www.atticusprojectai.org/cuad).
+
+> **For Developers:** Curious about how the CUAD dataset was converted into a knowledge graph? Check out the [CUAD to Knowledge Graph conversion documentation](./code/cuad-to-knowledge-graph/README.md) for details on how the data processing pipeline.
+
 ### Financial Services - Know Your Customer (KYC) Agent
 
 Our comprehensive KYC example shows how to build an intelligent agent for fraud investigation and compliance analysis. The agent can:

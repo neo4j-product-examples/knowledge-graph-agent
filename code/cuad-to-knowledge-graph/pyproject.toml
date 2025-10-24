@@ -1,0 +1,14 @@
+[project]
+name = "cuad-to-graph"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "google-genai>=1.25.0",
+    "neo4j>=5.28.1",
+    "neo4j-rust-ext>=5.28.1.0",
+    "numpy>=2.3.1",
+    "python-dotenv>=1.0.0",
+    "psutil>=6.1.0",
+]
