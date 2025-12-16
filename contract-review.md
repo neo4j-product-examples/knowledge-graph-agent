@@ -2,7 +2,7 @@
 
 This guide walks you through creating a Commericial Contract Review agent for legal professionals using Neo4j's Aura Agents. This agent helps analyze contracts, identify key clauses, and assess risks.
 
-### Prerequisites
+## Pre-requisites
 
 1. **Git LFS (Large File Storage)**: This repository contains large backup files that require Git LFS. 
 Install Git LFS before cloning:

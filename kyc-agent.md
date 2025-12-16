@@ -2,6 +2,24 @@
 
 This guide walks you through creating a KYC (Know Your Customer) analyst agent using Neo4j's Aura Agents.
 
+## Pre-requisites
+
+1. **Git LFS (Large File Storage)**: This repository contains large backup files that require Git LFS. 
+Install Git LFS before cloning:
+   ```bash
+   # Install Git LFS (if not already installed)
+   git lfs install
+   
+   # Clone the repository
+   git clone https://github.com/neo4j-product-examples/knowledge-graph-agent.git
+   ```
+   
+   If you've already cloned without Git LFS, you can fetch the large files by running:
+   ```bash
+   git lfs pull
+   ```
+
+
 ## Step 1: Access Aura Console
 
 1. Navigate to the **Aura Console**: [https://console-preview.neo4j.io/](https://console-preview.neo4j.io/)
