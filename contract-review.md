@@ -2,6 +2,23 @@
 
 This guide walks you through creating a Commericial Contract Review agent for legal professionals using Neo4j's Aura Agents. This agent helps analyze contracts, identify key clauses, and assess risks.
 
+### Prerequisites
+
+1. **Git LFS (Large File Storage)**: This repository contains large backup files that require Git LFS. 
+Install Git LFS before cloning:
+   ```bash
+   # Install Git LFS (if not already installed)
+   git lfs install
+   
+   # Clone the repository
+   git clone https://github.com/neo4j-product-examples/knowledge-graph-agent.git
+   ```
+   
+   If you've already cloned without Git LFS, you can fetch the large files by running:
+   ```bash
+   git lfs pull
+   ```
+
 ## Step 1: Access Aura Console
 
 1. Navigate to the **Aura Console**: [https://console-preview.neo4j.io/](https://console-preview.neo4j.io/)
@@ -17,7 +34,10 @@ Wait until your instance is `"RUNNING"`
 
 Using the "…​3 dots" menu in the Aura console, select `Backup & Restore`
 ![restore the Contract DB from backup](./images/contract-restore-backup.png)
-Restore from [`contract-data.backup`](./dump/contract-data.backup) file (Located under `./dump/contract-data.backup`)
+
+Restore from `contract-data.backup` which should be under the folder where you clone this repo (See Pre-requisites)
+
+The backup file will be under `./dump/contract-data.backup`
 
 Wait until your instance goes back to `"RUNNING"`
 
