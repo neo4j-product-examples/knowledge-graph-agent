@@ -61,7 +61,6 @@ For more on how the evaluation works (metrics, tracing, dataset design), check t
    The script reads this file by default.
 
 4. **Start Opik:**
-
    In a separate terminal, clone and run the Opik platform:
 
    ```bash
