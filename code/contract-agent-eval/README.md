@@ -60,7 +60,6 @@ For more on how the evaluation works (metrics, tracing, dataset design), check t
 
    - `input` — array of messages, e.g. `[{"role": "user", "content": "Your question here"}]`
    - `expected_output` — string (reference answer used for evaluation)
-   - `created_at` — ISO timestamp (optional)
 
    The script reads this file by default.
 

@@ -1,11 +1,6 @@
 #!/usr/bin/env python
 """
-Contract Agent Evaluation with Opik Traces
-
-Combines agent-eval.py (dataset, auth, multi-threaded evaluation, retries) with
-trace_simple.py trace style. Uses @track-decorated methods for thinking blocks and tool calls so they
-show as separate spans in Opik.
-Uses thread_id so each question maps to an Opik Thread (conversation).
+Contract Agent Evaluation with Opik Traces, Spans and Metrics
 """
 
 import os
