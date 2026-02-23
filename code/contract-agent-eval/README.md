@@ -8,9 +8,6 @@ For more on how the evaluation works (metrics, tracing, dataset design), check t
 
 
 
-
-
-
 ## Prerequisites
 
 1. **Git LFS (Large File Storage)**: This repository contains large backup files that require Git LFS. Install Git LFS before cloning:
