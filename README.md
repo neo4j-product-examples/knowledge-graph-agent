@@ -12,6 +12,7 @@ This repository contains step-by-step instructions on how to use the new Neo4j A
    
    # Clone the repository
    git clone https://github.com/neo4j-product-examples/knowledge-graph-agent.git
+   cd knowledge-graph-agent/
    ```
    
    If you've already cloned without Git LFS, you can fetch the large files by running:
@@ -45,6 +46,8 @@ Our Contract Review example demonstrates how to build an intelligent agent for l
 > **Learn more about CUAD**: The Contract Understanding Atticus Dataset (CUAD) v1 is a corpus of 13,000+ labels in 510 commercial legal contracts. For more information, visit the [Atticus Project CUAD page](https://www.atticusprojectai.org/cuad).
 
 > **For Developers:** Curious about how the CUAD dataset was converted into a knowledge graph? Check out the [CUAD to Knowledge Graph conversion documentation](./code/cuad-to-knowledge-graph/README.md) for details on how the data processing pipeline.
+
+For more on how the evaluation works (metrics, tracing, dataset design), see the **Medium blog post** that describes the full evaluation flow and what happens under the hood.
 
 ### Financial Services - Know Your Customer (KYC) Agent
 

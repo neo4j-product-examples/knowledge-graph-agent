@@ -1,0 +1,30 @@
+[
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "Find contracts with unlimited liability and no insurance clause"
+      }
+    ],
+    "expected_output": "I found the following contracts that contain \"Uncapped Liability\" clauses but do not have \"Insurance\" clauses, which can pose significant risks:\n\n---\n\n**Contract ID: 4**\n*   **Agreement Type:** Software Maintenance Agreement\n*   **Contract Name:** SOFTWARE MAINTENANCE AGREEMENT\n*   **Effective Date:** 2016-10-13\n*   **Expiration Date:** 2021-10-13\n*   **Renewal Term:** Unable to determine\n*   **Parties Involved:** Leader Act Ltd HK, EZJR, Inc.\n\n**Risk Factors:** In this contract, the absence of an \"Insurance\" clause combined with \"Uncapped Liability\" means that the parties, particularly the one bearing the uncapped liability, could face unlimited financial exposure for damages or losses without any insurance coverage to mitigate these costs. This could lead to severe financial distress in the event of a breach, negligence, or other liabilities.\n\n---\n\n**Contract ID: 10**\n*   **Agreement Type:** JOINT FILING AGREEMENT\n*   **Contract Name:** JOINT FILING AGREEMENT\n*   **Effective Date:** 2020-02-19\n*   **Expiration Date:** Unable to determine\n*   **Renewal Term:** Unable to determine\n*   **Parties Involved:** PRAIRIE ECI ACQUIROR LP, PRAIRIE NON-ECI ACQUIROR LP, PRAIRIE VCOC ACQUIROR LP, PRAIRIE SECONDARY ACQUIROR LP, PRAIRIE SECONDARY ACQUIROR E LP, BIP HOLDINGS MANAGER L.L.C., BLACKSTONE INFRASTRUCTURE ASSOCIATES L.P., BIA GP L.P., BIA GP L.L.C., BLACKSTONE HOLDINGS III L.P., BLACKSTONE HOLDINGS III GP L.P., BLACKSTONE HOLDINGS III GP MANAGEMENT L.L.C., BLACKSTONE HOLDINGS II L.P., BLACKSTONE HOLDINGS I/II GP L.L.C., THE BLACKSTONE GROUP INC., BLACKSTONE GROUP MANAGEMENT L.L.C., STEPHEN A. SCHWARZMAN\n\n**Risk Factors:** For a joint filing agreement with \"Uncapped Liability\" and no \"Insurance\" clause, any party held liable could face substantial, unmitigated financial burdens. Given the numerous parties involved, the complexity of potential liabilities could be high, and without insurance, each party's assets are directly exposed to unlimited claims.\n\n---\n\n**Contract ID: 23**\n*   **Agreement Type:** Affiliate Office Agreement\n*   **Contract Name:** NETWORK 1 FINANCIAL CORPORATION AFFILIATE OFFICE AGREEMENT\n*   **Effective Date:** Unable to determine\n*   **Expiration Date:** Unable to determine\n*   **Renewal Term:** Successive one-year terms\n*   **Parties Involved:** NETWORK 1 FINANCIAL, INC., Payment Data Systems, Inc.\n\n**Risk Factors:** With uncapped liability and no insurance in an affiliate office agreement, there's a significant risk that one party could be solely responsible for unlimited damages arising from the affiliate's operations. This could jeopardize the financial stability of the liable party, especially without the safety net of insurance coverage.\n\n---\n\n**Contract ID: 56**\n*   **Agreement Type:** Amendment to a Manufacturing Agreement\n*   **Contract Name:** Amendment #3 to the Manufacturing Agreement\n*   **Effective Date:** 2017-12-21\n*   **Expiration Date:** Unable to determine\n*   **Renewal Term:** Unable to determine\n*   **Parties Involved:** ADMA BioManufacturing, LLC, Sanofi Pasteur S.A.\n\n**Risk Factors:** In a manufacturing agreement, \"Uncapped Liability\" without \"Insurance\" is highly risky. Manufacturing processes can involve defects, product recalls, or other issues leading to massive liabilities. Without insurance, the manufacturer (or the party with uncapped liability) would be solely responsible for potentially enormous costs, which could severely impact their business operations and financial health.\n\n---\n\n**Contract ID: 62**\n*   **Agreement Type:** CO-BRANDING AGREEMENT\n*   **Contract Name:** CO-BRANDING AGREEMENT\n*   **Effective Date:** 2000-11-14\n*   **Expiration Date:** Unable to determine\n*   **Renewal Term:** Successive one year additional terms\n*   **Parties Involved:** Dassault Systemes, PlanetCAD Inc.\n\n**Risk Factors:** A co-branding agreement with \"Uncapped Liability\" and no \"Insurance\" means that if one party's actions under the co-branding arrangement lead to significant damages (e.g., brand defamation, intellectual property infringement claims), the other party with uncapped liability could face unlimited financial responsibility without any insurance to cover these potential losses. This exposes them to substantial financial risk.\n\n---\n\n**Recommendation:** For all these contracts, it is highly recommended to review the terms carefully, especially concerning liability and insurance provisions. Consider negotiating for a cap on liability or requiring appropriate insurance coverage to mitigate these significant financial risks."
+  },
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "what's the company with the most contracts in the database?"
+      }
+    ],
+    "expected_output": "The organization with the most contracts is **VerticalNet, Inc.**, with 5 contracts."
+  },
+  {
+    "input": [
+      {
+        "role": "user",
+        "content": "How many contracts for Stremick's Heritage in the database?"
+      }
+    ],
+    "expected_output": "There are 2 contracts for Stremick's Heritage in the database."
+  }
+  
+]
