@@ -27,9 +27,27 @@ For more on how the evaluation works (metrics, tracing, dataset design), check t
 
 2. [uv](https://docs.astral.sh/uv/) (Python package manager)
 
+## Start Opik
+
+In a separate terminal, clone and run the Opik platform:
+
+```bash
+# Clone the Opik repository
+git clone https://github.com/comet-ml/opik.git
+
+# Navigate to the opik folder
+cd opik
+
+# Start the Opik platform
+./opik.sh
+```
+
+Once it's running, Opik will be available at http://localhost:5173
+
 ## Setup
 
 1. **Create and sync the environment:**
+Go back to the Terminal where you cloned the tutorial repo
 
    ```bash
    cd code/contract-agent-eval
@@ -59,22 +77,6 @@ For more on how the evaluation works (metrics, tracing, dataset design), check t
    - `expected_output` — string (reference answer used for evaluation)
 
    The script reads this file by default.
-
-4. **Start Opik:**
-   In a separate terminal, clone and run the Opik platform:
-
-   ```bash
-   # Clone the Opik repository
-   git clone https://github.com/comet-ml/opik.git
-
-   # Navigate to the opik folder
-   cd opik
-
-   # Start the Opik platform
-   ./opik.sh
-   ```
-
-   Once it's running, Opik will be available at http://localhost:5173
 
 ## Run
 
