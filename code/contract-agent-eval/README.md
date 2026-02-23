@@ -60,6 +60,23 @@ For more on how the evaluation works (metrics, tracing, dataset design), check t
 
    The script reads this file by default.
 
+4. **Start Opik:**
+
+   In a separate terminal, clone and run the Opik platform:
+
+   ```bash
+   # Clone the Opik repository
+   git clone https://github.com/comet-ml/opik.git
+
+   # Navigate to the opik folder
+   cd opik
+
+   # Start the Opik platform
+   ./opik.sh
+   ```
+
+   Once it's running, Opik will be available at http://localhost:5173
+
 ## Run
 
 ```bash
