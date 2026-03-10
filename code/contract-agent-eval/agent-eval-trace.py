@@ -306,7 +306,7 @@ if __name__ == "__main__":
             "aura_agent_prompt":"Use your Aura Agent prompt here",
             "aura_agent_tools":"describe tools available to the agent"
         },
-        #nb_samples=2, # Uncomment this to evaluate on a subset of the dataset
+        nb_samples=2, # Uncomment this to evaluate on a subset of the dataset
         project_name="contract-agent-eval",
         task_threads=args.task_threads,
     )

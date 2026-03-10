@@ -15,7 +15,8 @@
         "content": "what's the company with the most contracts in the database?"
       }
     ],
-    "expected_output": "The organization with the most contracts is **VerticalNet, Inc.**, with 5 contracts."
+    "expected_output": "The organization with the most contracts is **VerticalNet, Inc.**, with 5 contracts.",
+    "context":"in our CUAD Dataset, VerticalNet is indeed the company with the most contracts"
   },
   {
     "input": [
@@ -24,7 +25,8 @@
         "content": "How many contracts for Stremick's Heritage in the database?"
       }
     ],
-    "expected_output": "There are 2 contracts for Stremick's Heritage in the database."
+    "expected_output": "There are 2 contracts for Stremick's Heritage in the database.",
+    "context":"in our CUAD Dataset, Stremick's Heritage has 2 contracts"
   }
   
 ]
