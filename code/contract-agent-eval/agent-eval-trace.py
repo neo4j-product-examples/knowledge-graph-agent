@@ -283,8 +283,9 @@ if __name__ == "__main__":
 
     # Create the evaluation metrics
     answer_relevance_metric = AnswerRelevance(require_context=False)
-    usefulness_metric = Usefulness()
-    hallucination_metric = Hallucination()
+    # TODO: Add more metrics as needed. Explore the Opik metrics documentation
+    #usefulness_metric = Usefulness()
+    #hallucination_metric = Hallucination()
 
 
     # One thread_id per dataset item so each question maps to one Opik Thread
@@ -300,7 +301,7 @@ if __name__ == "__main__":
     evaluation = evaluate(
         dataset=dataset,
         task=agent_evaluation_task,
-        scoring_metrics=[answer_relevance_metric, usefulness_metric, hallucination_metric],
+        scoring_metrics=[answer_relevance_metric],
         experiment_config={
             "aura_agent_endpoint": ENDPOINT_URL,
             "aura_agent_prompt":"Use your Aura Agent prompt here",
